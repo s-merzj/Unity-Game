@@ -20,7 +20,7 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         horizontal = Input.GetAxisRaw("Horizontal");
-        if(IsGrounded() && !Input.GetButton("Jump"){
+        if(IsGrounded() && !Input.GetButton("Jump")){
             doubleJump = false;
         }
         if(Input.GetButtonDown("Jump") && IsGrounded || doubleJump ()){
