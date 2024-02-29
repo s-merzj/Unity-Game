@@ -9,7 +9,10 @@ public class PlayerMovement : MonoBehaviour
     private float speed = 8f;
     private float jumpingPower = 17f;
     private bool isFacingRight = true;
-
+    
+    //next few are for double jump
+    private bool doubleJump;
+    
         [SerializeField] private Rigidbody2D rb;
         [SerializeField] private Transform groundCheck;
         [SerializeField] private LayerMask groundLayer;
@@ -17,10 +20,12 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         horizontal = Input.GetAxisRaw("Horizontal");
-
-        if(Input.GetButtonDown("Jump") && IsGrounded()){
+        if(IsGrounded() && !Input.GetButton("Jump"){
+            doubleJump = false;
+        }
+        if(Input.GetButtonDown("Jump") && IsGrounded || doubleJump ()){
             rb.velocity = new Vector2(rb.velocity.x, jumpingPower);
-
+            doubleJump = !doubleJump;
         }
         if(Input.GetButtonUp("Jump") && rb.velocity.y>0f()){
             rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * 0.5f);
