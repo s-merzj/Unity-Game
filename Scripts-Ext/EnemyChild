@@ -1,0 +1,18 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class EnemyChild : MonoBehaviour
+{
+    [SerializeField] GameObject owner;
+
+    void Start () {
+        Physics2D.IgnoreCollision(this.GetComponent<Collider2D>(), owner.GetComponent<Collider2D>());
+    }
+
+    void OnCollisionEnter2D(Collision2D other) {
+        if (!other.gameObject.CompareTag("Player")) {
+            owner.GetComponent<FollowPoint>().ContactEvent(other);
+        }
+    }
+}
