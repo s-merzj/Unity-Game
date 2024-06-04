@@ -1,0 +1,33 @@
+using System.Collections;
+using System.Collections.Generic;
+using System.ComponentModel.Design.Serialization;
+using Unity.VisualScripting;
+using UnityEngine;
+using UnityEngine.SceneManagement;
+using static UnityEngine.Rendering.CoreUtils;
+public class SceneLoader : MonoBehaviour
+{
+    public int nextLevel;
+    public bool PlayTesting = false;
+    public void OpenSceneCoin(){
+
+        if (CollectCoin.coins + 1 < nextLevel)
+        {
+            CollectCoin.coins++;
+        }
+
+        SceneManager.LoadScene("Level " + nextLevel.ToString());
+    }
+    public void OpenSceneButton()
+    {
+        SceneManager.LoadScene("Level " + nextLevel.ToString());
+    }
+
+    public void OpenAllowedScene()
+    {
+        if (CollectCoin.coins + 2 > nextLevel || PlayTesting)
+        {
+            SceneManager.LoadScene("Level " + nextLevel.ToString());
+        }
+    }
+}
