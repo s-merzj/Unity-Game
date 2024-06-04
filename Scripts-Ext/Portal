@@ -1,0 +1,14 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class Portal : MonoBehaviour
+{
+    [SerializeField] private GameObject output;
+    [SerializeField] private bool flipOnContact;
+    
+    void OnTriggerEnter2D(Collider2D other) {
+        other.transform.position = output.transform.position;
+        if (flipOnContact) {PlayerMovement p = other.GetComponent<PlayerMovement>(); p.gravityFlipped = !p.gravityFlipped;}
+    }
+}
