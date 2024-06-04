@@ -13,10 +13,10 @@ public class backroundLoop : MonoBehaviour
         mainCamera = gameObject.GetComponent<Camera>();
 
         // Calculate screen bounds
-        screenBounds = mainCamera.ScreenToWorldPoint(new Vector3(Screen.width + 200, Screen.height, mainCamera.transform.position.z));
+        screenBounds = mainCamera.ScreenToWorldPoint(new Vector3(Screen.width + 600, Screen.height, mainCamera.transform.position.z));
         Debug.Log(screenBounds);
         // Loads layers :)
-        foreach(GameObject obj in levels){
+        foreach(GameObject obj in levels){  
             loadChildObjects(obj);
         }
     }
