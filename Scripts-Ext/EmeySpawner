@@ -1,0 +1,42 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class EmeySpawner : MonoBehaviour
+{
+    [SerializeField] private GameObject projectile;
+    [SerializeField] private bool fireLeft = true;
+    [SerializeField] private float maxWait = 5f;
+    [SerializeField] private float minWait = 5f;
+
+    private float nextFireTime;
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        ResetTimer();
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        if (Time.time >= this.nextFireTime) {
+            Fire();
+            ResetTimer();
+        }
+    }
+
+    void Fire()
+    {
+        GameObject proj = Instantiate(projectile, transform.position, transform.rotation);
+        proj.transform.position += new Vector3((fireLeft) ? -0.5F: 0.5F, 0, 0);
+
+        Physics2D.IgnoreCollision(projectile.GetComponent<Collider2D>(), GetComponent<Collider2D>());
+        proj.GetComponent<EnemyBehaviour>().spawnFlipped = fireLeft;
+    }
+
+    void ResetTimer()
+    {
+        this.nextFireTime = Time.time + Random.Range(this.minWait, this.maxWait);
+    }
+}
