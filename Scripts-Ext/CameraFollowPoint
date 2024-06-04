@@ -1,0 +1,20 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class CameraFollowPoint : MonoBehaviour
+{
+    [SerializeField] private GameObject followed_object;
+    [SerializeField] private bool lockX = false;
+    [SerializeField] private bool lockY = false;
+
+    // Update is called once per frame
+    void Update()
+    {
+        this.transform.position = new Vector3(
+            (!lockX) ? this.transform.position.x : followed_object.transform.position.x,
+            (!lockY) ? this.transform.position.y : followed_object.transform.position.y,
+            0
+        );
+    }
+}
