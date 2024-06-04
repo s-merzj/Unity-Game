@@ -1,0 +1,22 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.SceneManagement;
+using static Cinemachine.DocumentationSortingAttribute;
+
+public class ButtonTint : MonoBehaviour
+{
+    public Graphic[] Buttons;
+
+    void Update()
+    {
+        for (int level = 0; level < Buttons.Length; level++)
+        {
+            if (level > CollectCoin.coins)
+            {
+                Buttons[level].color = Color.gray;
+            }
+        }
+    }
+}
