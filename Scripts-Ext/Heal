@@ -1,0 +1,17 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class Heal : MonoBehaviour
+{
+    public int amount = PlayerHealth.maxHealth;
+    void OnTriggerEnter2D(Collider2D col){
+        if (col.gameObject.CompareTag("Player"))
+        {
+            PlayerHealth playerHealth = col.gameObject.GetComponent<PlayerHealth>();
+            Destroy(this.gameObject);
+            playerHealth.Heal(amount);
+        }
+
+    }
+}
