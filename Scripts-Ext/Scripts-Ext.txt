@@ -1,1 +1,0 @@
-this folder contains scripts imported from VSCode over the course of development.
