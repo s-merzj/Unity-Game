@@ -1,0 +1,18 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class TakeDamage : MonoBehaviour
+{
+    public int damage = 1;
+
+    void OnCollisionEnter2D(Collision2D col)
+    {
+        if (col.gameObject.CompareTag("Player"))
+        {
+            
+            PlayerHealth playerHealth = col.gameObject.GetComponent<PlayerHealth>();
+            playerHealth.TakeDamage(damage);
+        }
+    }
+}
