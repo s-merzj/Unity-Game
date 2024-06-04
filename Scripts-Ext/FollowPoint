@@ -1,0 +1,22 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class FollowPoint : MonoBehaviour
+{
+    [SerializeField] private GameObject target;
+
+    // Update is called once per frame
+    void Update()
+    {
+        this.transform.position = target.transform.position;
+    }
+
+    public void ContactEvent(Collision2D other) {
+        if (!other.gameObject.CompareTag("Player")) {
+            if (target.GetComponent<EnemyBehaviour>().ContactEvent(other)) {
+                Destroy(this.gameObject);
+            }
+        }
+    }
+}
