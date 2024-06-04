@@ -9,14 +9,11 @@ public class PlayerHealth : MonoBehaviour
     public static int maxHealth = 6;
     public int health = maxHealth;
     public int numberOfNoHeart = 0;
-    public bool HalfHeart = false;
 
     public void TakeDamage(int damage){
-
+        health -= damage;
         GameObject go = GameObject.FindGameObjectWithTag("Hearts");
         HealthDisplay hd = go.GetComponent<HealthDisplay>();
-        health -= damage;
-
         hd.UpdateHearts(health);
 
         if (health <= 0){
@@ -31,11 +28,8 @@ public class PlayerHealth : MonoBehaviour
         else{
             health += amount;
         }
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        GameObject go = GameObject.FindGameObjectWithTag("Hearts");
+        HealthDisplay hd = go.GetComponent<HealthDisplay>();
+        hd.UpdateHearts(health);
     }
 }
